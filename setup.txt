@@ -1,0 +1,351 @@
+MUMBAI TAXI TRIP DATA ANALYSIS
+===============================
+
+SETUP AND RUN INSTRUCTIONS
+
+Project Stack:
+- Python 3.10
+- PySpark
+- Pandas
+- Django
+- Chart.js
+- Font Awesome CDN
+
+Project Folder:
+D:\Sumit\BDA Mini Project\Mumbai-Taxi-Analysis
+
+
+1. OPEN PROJECT FOLDER
+======================
+
+Open PowerShell:
+
+cd "D:\Sumit\BDA Mini Project\Mumbai-Taxi-Analysis"
+
+
+2. CREATE VIRTUAL ENVIRONMENT
+=============================
+
+Only if venv does not already exist:
+
+python -m venv venv
+
+
+3. ACTIVATE VIRTUAL ENVIRONMENT
+================================
+
+PowerShell:
+
+.\venv\Scripts\Activate.ps1
+
+If PowerShell gives an execution-policy error, use Command Prompt:
+
+venv\Scripts\activate.bat
+
+After activation you should see:
+
+(venv)
+
+
+4. INSTALL REQUIRED PACKAGES
+============================
+
+If requirements.txt exists:
+
+pip install -r requirements.txt
+
+Otherwise:
+
+pip install django
+pip install pyspark
+pip install pandas
+pip install matplotlib
+pip install seaborn
+pip install joblib
+
+
+5. CHECK PYTHON
+===============
+
+python --version
+
+Expected:
+
+Python 3.10.x
+
+
+6. CHECK PYSPARK
+================
+
+python -c "import pyspark; print(pyspark.__version__)"
+
+
+7. PROJECT STRUCTURE
+====================
+
+Mumbai-Taxi-Analysis/
+|
+|-- data/
+|   `-- mumbai_taxi_trips.csv
+|
+|-- pyspark/
+|   |-- test_spark.py
+|   |-- data_loading.py
+|   |-- data_cleaning.py
+|   `-- analysis.py
+|
+|-- results/
+|   |-- distance_analysis.csv
+|   |-- location_fare.csv
+|   |-- monthly_trips.csv
+|   |-- passenger_analysis.csv
+|   |-- payment_analysis.csv
+|   |-- top_dropoff_locations.csv
+|   |-- top_pickup_locations.csv
+|   `-- trips_by_hour.csv
+|
+|-- analytics/
+|   `-- views.py
+|
+|-- dashboard/
+|   |-- settings.py
+|   `-- urls.py
+|
+|-- templates/
+|   `-- index.html
+|
+|-- manage.py
+`-- venv/
+
+
+8. TEST PYSPARK
+===============
+
+python pyspark/test_spark.py
+
+If Spark starts successfully, PySpark is working.
+
+Windows may show warnings such as:
+- winutils.exe not found
+- HADOOP_HOME is not set
+- Unable to load native-hadoop library
+
+These warnings are expected for this local setup.
+A full Hadoop/HDFS installation is not required for this project.
+
+
+9. LOAD DATA
+============
+
+python pyspark/data_loading.py
+
+Expected dataset size:
+
+1,048,576 rows
+
+
+10. DATA CLEANING
+=================
+
+python pyspark/data_cleaning.py
+
+This checks/handles:
+- Missing values
+- Duplicate records
+- Invalid passenger counts
+- Invalid distances
+- Invalid fares
+
+
+11. RUN DATA ANALYSIS
+=====================
+
+python pyspark/analysis.py
+
+This generates analysis results inside:
+
+results/
+
+Main analysis:
+- Basic statistics
+- Trips by hour
+- Monthly trips
+- Top pickup locations
+- Top drop-off locations
+- Payment methods
+- Passenger analysis
+- Distance/fare analysis
+- Average fare by location
+
+
+12. START DJANGO
+================
+
+python manage.py runserver
+
+
+13. OPEN DASHBOARD
+==================
+
+Open:
+
+http://127.0.0.1:8000/
+
+
+14. DASHBOARD FEATURES
+======================
+
+KPI Cards:
+- Total Trips
+- Average Distance
+- Average Fare
+- Average Passengers
+
+Charts:
+- Trips by Hour
+- Monthly Trip Trend
+- Top Pickup Locations
+- Top Drop-off Locations
+- Payment Methods
+- Passenger Analysis
+- Average Fare by Location
+
+Filters:
+- Pickup Location
+- Payment Method
+- Passenger Count
+
+
+15. USE FILTERS
+===============
+
+Select a filter and click:
+
+Apply Filter
+
+Example:
+
+Pickup Location = Andheri
+Payment Method = UPI
+Passengers = 2
+
+The KPIs and charts update according to the selected data.
+
+To remove filters:
+
+Click Reset.
+
+
+16. STOP DJANGO SERVER
+======================
+
+Press:
+
+CTRL + C
+
+
+17. DEACTIVATE VENV
+===================
+
+deactivate
+
+
+18. IF CLONING FROM GITHUB
+==========================
+
+cd "Mumbai-Taxi-Analysis"
+
+python -m venv venv
+
+.\venv\Scripts\Activate.ps1
+
+pip install -r requirements.txt
+
+python pyspark/test_spark.py
+
+python pyspark/data_loading.py
+
+python pyspark/data_cleaning.py
+
+python pyspark/analysis.py
+
+python manage.py runserver
+
+Open:
+
+http://127.0.0.1:8000/
+
+
+19. CREATE requirements.txt
+===========================
+
+After installing all required packages:
+
+pip freeze > requirements.txt
+
+Then teammates can install everything using:
+
+pip install -r requirements.txt
+
+
+20. POWERSHELL ACTIVATION ERROR
+===============================
+
+If activation is blocked:
+
+Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
+
+Then:
+
+.\venv\Scripts\Activate.ps1
+
+
+21. IMPORTANT
+=============
+
+Do NOT install Hadoop/HDFS just to run this project.
+
+The project uses:
+
+Python + PySpark + Django
+
+and runs PySpark locally.
+
+The Mumbai taxi dataset used in this project is a synthetic dataset created for academic/demo analysis.
+
+
+22. QUICK START
+===============
+
+For normal future runs:
+
+cd "D:\Sumit\BDA Mini Project\Mumbai-Taxi-Analysis"
+
+.\venv\Scripts\Activate.ps1
+
+python pyspark/analysis.py
+
+python manage.py runserver
+
+Then open:
+
+http://127.0.0.1:8000/
+
+
+23. IF RESULTS ALREADY EXIST
+============================
+
+If the result CSV files are already generated and the dataset has not changed, you can directly run:
+
+cd "D:\Sumit\BDA Mini Project\Mumbai-Taxi-Analysis"
+
+.\venv\Scripts\Activate.ps1
+
+python manage.py runserver
+
+Open:
+
+http://127.0.0.1:8000/
+
+
+END
